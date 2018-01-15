@@ -1,9 +1,14 @@
 #define STAV(x) (x-'0')
+#define CERVENA 6
+#define ZLUTA   5
+#define ZELENA  4
 
 void setup()
 {
   Serial.begin(9600);
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(CERVENA, OUTPUT);
+  pinMode(ZLUTA, OUTPUT);
+  pinMode(ZELENA, OUTPUT);
 }
 
 // ctyrprvkove pole typu char
@@ -29,20 +34,24 @@ void loop()
   {
     // vyhodnoceni prikazu
     Serial.println(cmd);
-    Serial.println(STAV(cmd[2]));
-    digitalWrite(LED_BUILTIN, HIGH); // prevod char -> int
-    /*
+      
     switch(cmd[1])
     {
+      case '0': // vsechny LED
+        digitalWrite(CERVENA, STAV(cmd[2]));
+        digitalWrite(ZLUTA, STAV(cmd[2]));
+        digitalWrite(ZELENA, STAV(cmd[2]));
       case '1': // prvni LED
-        Serial.println((int)cmd[2]);
-        // podle cmd[2] rozsvecim nebo zhasinam
+        digitalWrite(CERVENA, STAV(cmd[2]));
         break;
       case '2': // druha LED
+        digitalWrite(ZLUTA, STAV(cmd[2]));
         break;
-
+      case '3': // treti LED
+        digitalWrite(ZELENA, STAV(cmd[2]));
+        break;  
     }
-    */
+    
     j = 0; i = 0;
   }
 }
